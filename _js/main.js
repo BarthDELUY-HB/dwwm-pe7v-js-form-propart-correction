@@ -12,8 +12,7 @@ function hideElement(eltId)
 function handleAccountTypeChoice()
 {
     let accountType = document.querySelector('input[name="accountType"]:checked').value;
-    console.log("accountType :" + accountType);
-
+    
     if( accountType == 'individual') {
         hideElement('professionalForm');
         showElement('individualForm');
@@ -36,6 +35,7 @@ function attachAccountTypeListener()
 function main()
 {
     attachAccountTypeListener();
+    attachPrivateAccountListeners();
 }
 
 window.addEventListener('load', main);

@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Création de compte</title>
     <link rel="stylesheet" href="./_css/styles.css">
+    <script src="./_js/particulier.js"></script>
     <script src="./_js/main.js"></script>
 </head>
 
@@ -69,12 +70,12 @@
         <fieldset>
             <legend>Numéros de téléphone</legend>
             <label for="phoneNumberFixed">Numéro de téléphone fixe :</label>
-            <input type="tel" id="phoneNumberFixed" name="phoneNumberFixed" pattern="\d{10}">
-            <span class="error" id="phoneNumberFixedError"></span>
+            <input type="tel" id="landLineNumber" name="landLineNumber" pattern="\d{10}">
+            <span class="error" id="landLineNumberError"></span>
 
             <label for="phoneNumberMobile">Numéro de téléphone portable :</label>
-            <input type="tel" id="phoneNumberMobile" name="phoneNumberMobile" pattern="\d{10}">
-            <span class="error" id="phoneNumberMobileError"></span>
+            <input type="tel" id="gsmNumber" name="gsmNumber" pattern="\d{10}">
+            <span class="error" id="gsmNumberError"></span>
         </fieldset>
 
         <fieldset>
