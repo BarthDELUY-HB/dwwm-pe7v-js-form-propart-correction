@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Création de compte</title>
     <link rel="stylesheet" href="./_css/styles.css">
+    <script src="./_js/utils.js"></script>
     <script src="./_js/particulier.js"></script>
     <script src="./_js/main.js"></script>
 </head>
@@ -88,7 +89,7 @@
         <fieldset>
             <legend>Acceptation des conditions</legend>
             <label>
-                <input type="checkbox" id="privateAcceptCGV" name="acceptCGV" required>
+                <input type="checkbox" id="privateAcceptCGV" name="acceptCGV">
                 J'accepte les CGV
             </label>
 
@@ -97,6 +98,8 @@
                 J'accepte de recevoir des communications commerciales
             </label>
         </fieldset>
+
+        <p id="errorMessage"></p>
 
         <input type="submit" value="Créer le compte">
     </form>
