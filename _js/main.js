@@ -36,6 +36,7 @@ function main()
 {
     attachAccountTypeListener();
     attachPrivateAccountListeners();
+    attachProfessionnalAccountListeners();
 }
 
 window.addEventListener('load', main);

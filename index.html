@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="./_css/styles.css">
     <script src="./_js/utils.js"></script>
     <script src="./_js/particulier.js"></script>
+    <script src="./_js/professionnel.js"></script>
     <script src="./_js/main.js"></script>
 </head>
 
@@ -116,12 +117,8 @@
         <fieldset>
             <legend>Numéro de SIREN/SIRET</legend>
             <label for="sirenNumber">Numéro de SIREN :</label>
-            <input type="text" id="sirenNumber" name="sirenNumber" required pattern="\d{9}">
+            <input type="text" id="sirenNumber" name="sirenNumber">
             <span class="error" id="sirenNumberError"></span>
-
-            <label for="siretNumber">Numéro de SIRET :</label>
-            <input type="text" id="siretNumber" name="siretNumber" required pattern="\d{14}">
-            <span class="error" id="siretNumberError"></span>
         </fieldset>
 
         <fieldset>
@@ -153,7 +150,7 @@
         <fieldset>
             <legend>Numéro de TVA intracommunautaire</legend>
             <label for="vatNumber">Numéro de TVA intracommunautaire :</label>
-            <input type="text" id="vatNumber" name="vatNumber" pattern="FR\d{2}\d{9}">
+            <input type="text" id="vatNumber" name="vatNumber">
             <span class="error" id="vatNumberError"></span>
         </fieldset>
 
