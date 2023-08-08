@@ -21,21 +21,34 @@ function checkVATNumberBeginsWithFR(VATNumber)
     return false;
 }
 
-function checkVATNumberKeyIsNumeric(VATNumber)
+function checkVATNumberEndsWithSIREN(VATNumber, SIREN)
 {
-    const VATNumberKey = VATNumber.slice(2, 2);
-    if (isNumeric(VATNumberKey)) {
+    const VATNumberEnd = VATNumber.slice(-9);
+    if (VATNumberEnd.localeCompare(SIREN) === 0) {
         return true;
     }
     return false;
 }
 
+function checkVATNumberKeyIsNumeric(VATNumber)
+{
+    const VATNumberKey = VATNumber.slice(2, 2);
+    return isNumeric(VATNumberKey);
+}
+
+function getSIREN()
+{
+    return document.querySelector('#sirenNumber').value.slice(0, 9);
+}
+
 function checkVATNumber(event)
 {
     let vatNumber = document.querySelector('#vatNumber').value;
+
     if (vatNumber.length == 13
         && checkVATNumberBeginsWithFR(vatNumber)
-        && checkVATNumberKeyIsNumeric(vatNumber))  {
+        && checkVATNumberKeyIsNumeric(vatNumber)
+        && checkVATNumberEndsWithSIREN(vatNumber, getSIREN()))  {
         return true;
     }
     event.preventDefault();
