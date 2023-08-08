@@ -40,9 +40,43 @@ function checkIfCGVChecked(event)
     return false;
 }
 
+function checkIfUserIsAtLeast13(event)
+{
+    let userBirthDate = document.querySelector('#dateOfBirth').value;
+    let today = new Date();
+
+    const userDate = new Date(userBirthDate);
+
+    /* Premier cas : année de naissance < année courante - 13 */
+    if (userDate.getFullYear() < today.getFullYear() - 13) {
+        return true;
+    }
+    /* Deuxième cas : année de naissance = année courante - 13 
+        et mois de naissance < mois en cours */
+    if ((userDate.getFullYear() == today.getFullYear() - 13)
+        && userDate.getMonth() < today.getMonth()) {
+        return true;
+    }
+    /* Troisième cas : année de naissance = année courante - 13 
+        et mois de naissance = mois en cours
+        et jour de naissance <= jour actuel */
+    if ((userDate.getFullYear() == today.getFullYear() - 13)
+    && userDate.getMonth() == today.getMonth()
+    && userDate.getDate() <= today.getDate()) {
+        return true;
+    }
+
+    document.querySelector('#errorMessage').textContent = "Tu n'as pas 13 ans, demande à un adulte de te créer le compte !";
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    return false;
+}
+
+
 function attachPrivateAccountListeners()
 {
     document.querySelector('#individualForm').addEventListener('submit', checkIfAtLeastOnePhoneNumber);
     document.querySelector('#individualForm').addEventListener('submit', checkZipCode);
     document.querySelector('#individualForm').addEventListener('submit', checkIfCGVChecked);
+    document.querySelector('#individualForm').addEventListener('submit', checkIfUserIsAtLeast13);
 }
