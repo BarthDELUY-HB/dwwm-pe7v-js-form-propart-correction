@@ -45,12 +45,11 @@ function checkVATNumber(event)
 {
     let vatNumber = document.querySelector('#vatNumber').value;
 
-    if (vatNumber.length == 13
-        && checkVATNumberBeginsWithFR(vatNumber)
-        && checkVATNumberKeyIsNumeric(vatNumber)
-        && checkVATNumberEndsWithSIREN(vatNumber, getSIREN()))  {
+    let regex = new RegExp("^FR\\d{2}" + getSIREN() + "$");
+    if (regex.test(vatNumber))  {
         return true;
     }
+    document.querySelector('#vatNumberError').textContent = "Erreur de numéro de TVA !";
     event.preventDefault();
     return false;
 }
