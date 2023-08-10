@@ -1,6 +1,6 @@
 "use strict";
 
-function checkIfAtLeastOnePhoneNumber(event)
+function checkIfAtLeastOnePhoneNumber()
 {
     let landlineNumber = document.querySelector('#landLineNumber').value;
     let gsmNumber = document.querySelector('#gsmNumber').value;
@@ -9,13 +9,10 @@ function checkIfAtLeastOnePhoneNumber(event)
         return true;
     }
     document.querySelector('#errorMessage').textContent = "Merci de renseigner au moins un numéro de téléphone !";
-    // On bloque l'envoi du formulaire
-    event.preventDefault();
-    event.stopImmediatePropagation();
     return false;
 }
 
-function checkZipCode(event)
+function checkZipCode()
 {
     const zipCode = document.querySelector('#privatePostalCode').value;
     if ( zipCode.length == 5
@@ -23,24 +20,20 @@ function checkZipCode(event)
         return true;
     }
     document.querySelector('#errorMessage').textContent = "Le code postal est invalide !";
-    event.preventDefault();
-    event.stopImmediatePropagation();
     return false;
 }
 
-function checkIfCGVChecked(event)
+function checkIfCGVChecked()
 {
     if (document.querySelectorAll('#privateAcceptCGV:checked').length == 1) {
         return true;
     }
     document.querySelector('#privateAcceptCGV').classList.add('CGVUnchecked');
     document.querySelector('#errorMessage').textContent = "Merci de valider les CGV !";
-    event.preventDefault();
-    event.stopImmediatePropagation();
     return false;
 }
 
-function checkIfUserIsAtLeast13(event)
+function checkIfUserIsAtLeast13()
 {
     let userBirthDate = document.querySelector('#dateOfBirth').value;
     let today = new Date();
@@ -67,16 +60,43 @@ function checkIfUserIsAtLeast13(event)
     }
 
     document.querySelector('#errorMessage').textContent = "Tu n'as pas 13 ans, demande à un adulte de te créer le compte !";
-    event.preventDefault();
-    event.stopImmediatePropagation();
     return false;
 }
 
+function buildIndividualFormResult()
+{
+    let result = {};
+
+    let inputs = document.querySelectorAll('#individualForm input, #individualForm select');
+
+    let i = 0;
+    while (i < inputs.length) {
+        let name = inputs[i].getAttribute('name');
+        let value = inputs[i].value;
+        result[name] = value;
+        i++;
+    }
+
+    return result;
+}
+
+function handleIndividualFormSubmit(event)
+{
+    event.preventDefault();
+
+    if (checkIfAtLeastOnePhoneNumber()
+        && checkZipCode()
+        && checkIfCGVChecked()
+        && checkIfUserIsAtLeast13()) {
+            /* Traitement si toutes les vérifications passent */
+            console.log(buildIndividualFormResult());
+    }
+
+    return false;
+}
 
 function attachPrivateAccountListeners()
 {
-    document.querySelector('#individualForm').addEventListener('submit', checkIfAtLeastOnePhoneNumber);
-    document.querySelector('#individualForm').addEventListener('submit', checkZipCode);
-    document.querySelector('#individualForm').addEventListener('submit', checkIfCGVChecked);
-    document.querySelector('#individualForm').addEventListener('submit', checkIfUserIsAtLeast13);
+    document.querySelector('#individualForm')
+        .addEventListener('submit', handleIndividualFormSubmit);
 }
